@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<PackAsTool>true</PackAsTool>
+    <ToolCommandName>quickshare</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+    <PackageId>Quickshare</PackageId>
+    <Title>Quickshare</Title>
+    <Authors>TopperDEL</Authors>
+    <Company>TopperDEL</Company>
+	<Version>0.1.0</Version>
+	<PackageReleaseNotes>Alpha version</PackageReleaseNotes>
+	<Description>This package lets you share files quickly by leveraging Storj DCS.</Description>
+	<Copyright>2022 TopperDEL</Copyright>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="TextCopy" Version="6.1.0" />
+    <PackageReference Include="uplink.NET" Version="2.9.2782" />
+    <PackageReference Include="uplink.NET.Win" Version="2.9.2782" />	
+  </ItemGroup>
+
+</Project>
