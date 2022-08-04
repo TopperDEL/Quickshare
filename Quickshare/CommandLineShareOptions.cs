@@ -14,7 +14,7 @@ namespace Quickshare
         [Option('f', "file", Required = true, Default = true, HelpText = "The file to upload.")]
         public string Filename { get; set; }
 
-        [Option('d', "duration", Required = false, HelpText = "The share-duration.")]
+        [Option('d', "duration", Required = false, HelpText = "The timespan for how long the file should be shared. It will be deleted and be unaccessable after that.\nUse english phrases like '20 minutes' or '3 weeks'.")]
         public string Duration { get; set; }
     }
 }

@@ -41,6 +41,17 @@ else
     var result = Parser.Default.ParseArguments<CommandLineConfigOptions, CommandLineShareOptions>(args);
     result.WithParsed<CommandLineShareOptions>(s =>
     {
+        TimeSpan shareDuration = TimeSpan.MinValue;
+        if (!string.IsNullOrEmpty(s.Duration))
+        {
+            var parsed = TimeSpanParserUtil.TimeSpanParser.TryParse(s.Duration, out shareDuration);
+            if(!parsed)
+            {
+                Console.WriteLine("Could not parse the share-duration. Please try a different expression.");
+                return;
+            }
+        }
+
         Console.WriteLine("Sharing file '" + s.Filename + "'.");
 
         Access access = new Access(quickshareConfig.AccessGrant);
@@ -49,7 +60,12 @@ else
         var bucket = bucketService.EnsureBucketAsync(quickshareConfig.BucketName).Result;
         Console.WriteLine("Starting upload...");
         IObjectService objectService = new ObjectService(access);
-        var uploadOperation = objectService.UploadObjectAsync(bucket, s.Filename, new UploadOptions(), File.ReadAllBytes(s.Filename), false).Result;
+        var uploadOptions = new UploadOptions();
+        if(shareDuration != TimeSpan.MinValue)
+        {
+            uploadOptions.Expires = DateTime.Now + shareDuration;
+        }
+        var uploadOperation = objectService.UploadObjectAsync(bucket, s.Filename, uploadOptions, File.ReadAllBytes(s.Filename), false).Result;
         uploadOperation.UploadOperationProgressChanged += (uploadOperation) =>
         {
             if (uploadOperation.PercentageCompleted < 100)
@@ -60,7 +76,7 @@ else
             else
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("\rDone!            \n");
+                Console.Write("\rDone!                    \n");
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
         };
@@ -79,6 +95,12 @@ else
         Console.WriteLine(url);
         TextCopy.ClipboardService.SetText(url);
         Console.WriteLine("It has been copied to the clipboard.");
+        if(shareDuration != TimeSpan.MinValue)
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("Your shared file will expire on {0}. The file will be automatically deleted afterwards.", uploadOptions.Expires.ToString());
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
     });
 }
 
