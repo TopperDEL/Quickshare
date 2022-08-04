@@ -47,7 +47,9 @@ else
             var parsed = TimeSpanParserUtil.TimeSpanParser.TryParse(s.Duration, out shareDuration);
             if(!parsed)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Could not parse the share-duration. Please try a different expression.");
+                Console.ForegroundColor = ConsoleColor.Gray;
                 return;
             }
         }
@@ -86,6 +88,7 @@ else
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Upload failed: " + uploadOperation.ErrorMessage);
+            Console.ForegroundColor = ConsoleColor.Gray;
             return;
         }
 
