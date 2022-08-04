@@ -1,6 +1,8 @@
 # Quickshare
 Sharing a file has never been easier - simply upload files to the decentralised storage-network Storj DCS and share a link to the file!
 
+![quickshare_with_shadow](https://user-images.githubusercontent.com/1833242/182858039-5c8a6ad8-2c2f-4341-865f-6f7179393666.png)
+
 # Installation
 This is a dotnet-tool! So assuming you have dotnet installed simply install the quickshare-tool by opening a command prompt:
 
