@@ -12,10 +12,15 @@
     <Title>Quickshare</Title>
     <Authors>TopperDEL</Authors>
     <Company>TopperDEL</Company>
-	<Version>0.2.0</Version>
-	<PackageReleaseNotes>Alpha version</PackageReleaseNotes>
+	<Version>0.3.0</Version>
+	<PackageReleaseNotes>Still in alpha, but should be ready for production</PackageReleaseNotes>
 	<Description>This package lets you share files quickly by leveraging Storj DCS.</Description>
 	<Copyright>2022 TopperDEL</Copyright>
+	<PackageProjectUrl>https://github.com/TopperDEL/Quickshare</PackageProjectUrl>
+	<PackageIcon>StoreLogo.png</PackageIcon>
+	<RepositoryUrl>https://github.com/TopperDEL/Quickshare</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+	<PackageTags>storj share quick file upload url link</PackageTags>
   </PropertyGroup>
   
   <ItemGroup>
@@ -25,6 +30,13 @@
     <PackageReference Include="TimeSpanParserUtil" Version="1.2.0" />
     <PackageReference Include="uplink.NET" Version="2.9.2782" />
     <PackageReference Include="uplink.NET.Win" Version="2.9.2782" />	
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="StoreLogo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
