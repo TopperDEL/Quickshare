@@ -67,7 +67,7 @@ else
         {
             uploadOptions.Expires = DateTime.Now + shareDuration;
         }
-        var uploadOperation = objectService.UploadObjectAsync(bucket, s.Filename, uploadOptions, File.ReadAllBytes(s.Filename), false).Result;
+        var uploadOperation = objectService.UploadObjectAsync(bucket, s.Filename, uploadOptions, File.OpenRead(s.Filename), false).Result;
         uploadOperation.UploadOperationProgressChanged += (uploadOperation) =>
         {
             if (uploadOperation.PercentageCompleted < 100)
