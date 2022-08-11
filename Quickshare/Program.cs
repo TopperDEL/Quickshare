@@ -24,8 +24,8 @@ string configLocation = Path.Combine(appData, @"\quickshare.config");
 
 //Check if the user wants to set new config-values
 bool requestsConfigUpdate = false;
-Parser.Default.ParseArguments<CommandLineConfigOptions>(args)
-        .WithParsed(o =>
+Parser.Default.ParseArguments<CommandLineConfigOptions, CommandLineShareOptions>(args)
+        .WithParsed<CommandLineConfigOptions>(o =>
         {
             requestsConfigUpdate = true;
         });

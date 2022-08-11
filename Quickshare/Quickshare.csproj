@@ -12,8 +12,8 @@
     <Title>Quickshare</Title>
     <Authors>TopperDEL</Authors>
     <Company>TopperDEL</Company>
-	<Version>1.0.0</Version>
-	<PackageReleaseNotes>Release v1.0.0!
+	<Version>1.0.1</Version>
+	<PackageReleaseNotes>Release v1.0.1!
 Supports Windows, Linux and MacOS</PackageReleaseNotes>
 	<Description>This package lets you share files quickly by leveraging Storj DCS.</Description>
 	<Copyright>2022 TopperDEL</Copyright>
