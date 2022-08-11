@@ -12,9 +12,9 @@
     <Title>Quickshare</Title>
     <Authors>TopperDEL</Authors>
     <Company>TopperDEL</Company>
-	<Version>0.4.3</Version>
-	<PackageReleaseNotes>Still in alpha, but should be ready for production.
-- Fix for files larger then 2GB</PackageReleaseNotes>
+	<Version>1.0.0</Version>
+	<PackageReleaseNotes>Release v1.0.0!
+Supports Windows, Linux and MacOS</PackageReleaseNotes>
 	<Description>This package lets you share files quickly by leveraging Storj DCS.</Description>
 	<Copyright>2022 TopperDEL</Copyright>
 	<PackageProjectUrl>https://github.com/TopperDEL/Quickshare</PackageProjectUrl>
@@ -37,11 +37,16 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="TextCopy" Version="6.1.0" />
     <PackageReference Include="TimeSpanParserUtil" Version="1.2.0" />
-    <PackageReference Include="uplink.NET" Version="2.9.2782" />
-    <PackageReference Include="uplink.NET.Win" Version="2.9.2782" />	
+    <PackageReference Include="uplink.NET" Version="2.9.2858" />
+    <PackageReference Include="uplink.NET.Linux" Version="2.9.2896" />
+    <PackageReference Include="uplink.NET.Mac" Version="2.9.2896" />
+    <PackageReference Include="uplink.NET.Win" Version="2.9.2858" />	
   </ItemGroup>
   
   <ItemGroup>
+    <None Update="libstorj_uplink.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="StoreLogo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

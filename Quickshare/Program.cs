@@ -5,16 +5,34 @@ using System.Reflection;
 using uplink.NET.Interfaces;
 using uplink.NET.Models;
 using uplink.NET.Services;
+using static System.Environment;
 
 var assembly = Assembly.GetExecutingAssembly();
 var assemblyVersion = assembly.GetName().Version;
 Console.ForegroundColor = ConsoleColor.Blue;
-Console.WriteLine($"\nWelcome to Quickshare v{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build} powered by Storj DCS (https://storj.io)!\n");
+Console.WriteLine($"\nWelcome to Quickshare v{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build} powered by Storj DCS (https://storj.io)!");
+Console.WriteLine($"It is using uplink-c {uplink.NET.Models.Access.GetStorjVersion()} and Go {uplink.NET.Models.Access.GetGoVersion()}\n");
 Console.ForegroundColor = ConsoleColor.Gray;
 
-string configLocation = Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + @"\quickshare.config";
-if (!File.Exists(configLocation))
+string appData = Path.Combine(Environment.GetFolderPath(SpecialFolder.LocalApplicationData, SpecialFolderOption.DoNotVerify), "quickshare");
+if (!Directory.Exists(appData))
 {
+    Directory.CreateDirectory(appData);
+}
+
+string configLocation = Path.Combine(appData, @"\quickshare.config");
+
+//Check if the user wants to set new config-values
+bool requestsConfigUpdate = false;
+Parser.Default.ParseArguments<CommandLineConfigOptions>(args)
+        .WithParsed(o =>
+        {
+            requestsConfigUpdate = true;
+        });
+
+if (!File.Exists(configLocation) || requestsConfigUpdate)
+{
+    //There is no config or the user explicitly wants to set new values
     Parser.Default.ParseArguments<CommandLineConfigOptions>(args)
         .WithParsed(o =>
         {
@@ -22,7 +40,7 @@ if (!File.Exists(configLocation))
             var configJson = JsonConvert.SerializeObject(quickshareConfig);
             File.WriteAllText(configLocation, configJson);
 
-            Console.WriteLine("Your configuration has been set! You may now use 'quickshare FILENAME' to share a file.");
+            Console.WriteLine("Your configuration has been set! You may now use 'quickshare -f FILENAME' to share a file. Add something like '-d \"1 week\" to restrict the availability of your file and delete it automatically.");
         })
         .WithNotParsed(o =>
         {
@@ -45,7 +63,7 @@ else
         if (!string.IsNullOrEmpty(s.Duration))
         {
             var parsed = TimeSpanParserUtil.TimeSpanParser.TryParse(s.Duration, out shareDuration);
-            if(!parsed)
+            if (!parsed)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Could not parse the share-duration. Please try a different expression.");
@@ -63,7 +81,7 @@ else
         Console.WriteLine("Starting upload...");
         IObjectService objectService = new ObjectService(access);
         var uploadOptions = new UploadOptions();
-        if(shareDuration != TimeSpan.MinValue)
+        if (shareDuration != TimeSpan.MinValue)
         {
             uploadOptions.Expires = DateTime.Now + shareDuration;
         }
@@ -98,7 +116,7 @@ else
         Console.WriteLine(url);
         TextCopy.ClipboardService.SetText(url);
         Console.WriteLine("It has been copied to the clipboard.");
-        if(shareDuration != TimeSpan.MinValue)
+        if (shareDuration != TimeSpan.MinValue)
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Your shared file will expire on {0}. The file will be automatically deleted afterwards.", uploadOptions.Expires.ToString());
