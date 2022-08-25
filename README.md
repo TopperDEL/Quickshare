@@ -17,7 +17,7 @@ Before uploading your first file you have to setup the tool by providing an acce
 
 Then setup quickshare like this:
 ``
-quickshare -g ACCESS_GRANT -b BUCKET_NAME
+quickshare config -g ACCESS_GRANT -b BUCKET_NAME
 ``
 
 Replace ACCESS_GRANT and BUCKET_NAME with your values.
