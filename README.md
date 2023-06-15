@@ -4,7 +4,7 @@ Sharing a file has never been easier - simply upload files to the decentralised 
 ![quickshare_with_shadow](https://user-images.githubusercontent.com/1833242/182858039-5c8a6ad8-2c2f-4341-865f-6f7179393666.png)
 
 # Installation
-This is a dotnet-tool! So assuming you have dotnet installed simply install the quickshare-tool by opening a command prompt:
+This is a dotnet-tool! So assuming you have dotnet-SDK installed simply install the quickshare-tool by opening a command prompt:
 
 ``
 dotnet tool install -g quickshare
@@ -13,7 +13,7 @@ dotnet tool install -g quickshare
 This will install the tool globally so you can simply call ``quickshare`` from every location.
 
 # Setup
-Before uploading your first file you have to setup the tool by providing an access grant and a bucket name from your storj account. You get 150GB of free storage on https://storj.io. Follow this [guide](https://docs.storj.io/dcs/getting-started/quickstart-uplink-cli/uploading-your-first-object/create-first-access-grant/) on how to create an access grant.
+Before uploading your first file you have to setup the tool by providing an access grant and a bucket name from your storj account. You get 25GB of free storage on https://storj.io. Follow this [guide](https://docs.storj.io/dcs/getting-started/quickstart-uplink-cli/uploading-your-first-object/create-first-access-grant/) on how to create an access grant.
 
 Then setup quickshare like this:
 ``
