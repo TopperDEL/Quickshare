@@ -35,4 +35,4 @@ If you want the file to only be available for a certain amount of time adjust yo
 quickshare -f myAwesomeFile.txt -d "1 week"
 ``
 
-This will make your file available for 1 week and delete it automatically afterwards, which will also render your share-URL obsolet.
+This will make your file available for 1 week and delete it automatically afterwards, which will also render your share-URL obsolet. You may provide different phrases like "3 days", "1 week, 2 days" etc. to the "-d"-Parameter.
