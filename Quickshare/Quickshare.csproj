@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<PackAsTool>true</PackAsTool>
@@ -12,11 +12,11 @@
     <Title>Quickshare</Title>
     <Authors>TopperDEL</Authors>
     <Company>TopperDEL</Company>
-	<Version>1.0.5</Version>
-	<PackageReleaseNotes>Release v1.0.1!
-Supports Windows, Linux and MacOS</PackageReleaseNotes>
+	<Version>1.0.6</Version>
+	<PackageReleaseNotes>Release v1.0.6
+Fixes bug on linux regarding Clipboard-sharing</PackageReleaseNotes>
 	<Description>This package lets you share files quickly by leveraging Storj DCS.</Description>
-	<Copyright>2022 TopperDEL</Copyright>
+	<Copyright>2023 TopperDEL</Copyright>
 	<PackageProjectUrl>https://github.com/TopperDEL/Quickshare</PackageProjectUrl>
 	<PackageIcon>StoreLogo.png</PackageIcon>
 	<RepositoryUrl>https://github.com/TopperDEL/Quickshare</RepositoryUrl>

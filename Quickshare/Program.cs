@@ -104,8 +104,16 @@ Parser.Default.ParseArguments<CommandLineConfigOptions, CommandLineShareOptions>
             var url = access.CreateShareURL(quickshareConfig.BucketName, o.Filename, true, true).Replace("gateway", "link");
             Console.WriteLine("Your URL is:");
             Console.WriteLine(url);
-            TextCopy.ClipboardService.SetText(url);
-            Console.WriteLine("It has been copied to the clipboard.");
+            try
+            {
+                TextCopy.ClipboardService.SetText(url);
+                Console.WriteLine("It has been copied to the clipboard.");
+            }
+            catch
+            {
+                //Might fail on e.g. Linux
+            }
+
             if (shareDuration != TimeSpan.MinValue)
             {
                 Console.ForegroundColor = ConsoleColor.Magenta;
