@@ -12,9 +12,9 @@
     <Title>Quickshare</Title>
     <Authors>TopperDEL</Authors>
     <Company>TopperDEL</Company>
-	<Version>1.0.6</Version>
-	<PackageReleaseNotes>Release v1.0.6
-Fixes bug on linux regarding Clipboard-sharing</PackageReleaseNotes>
+	<Version>1.1.0</Version>
+	<PackageReleaseNotes>Release v1.1.0
+Uses latest uplink-c (v1.8.0) with refactored upload code path for faster and more resilient uploads</PackageReleaseNotes>
 	<Description>This package lets you share files quickly by leveraging Storj DCS.</Description>
 	<Copyright>2023 TopperDEL</Copyright>
 	<PackageProjectUrl>https://github.com/TopperDEL/Quickshare</PackageProjectUrl>
@@ -34,13 +34,13 @@ Fixes bug on linux regarding Clipboard-sharing</PackageReleaseNotes>
   
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="TextCopy" Version="6.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="TextCopy" Version="6.2.1" />
     <PackageReference Include="TimeSpanParserUtil" Version="1.2.0" />
-    <PackageReference Include="uplink.NET" Version="2.9.2858" />
-    <PackageReference Include="uplink.NET.Linux" Version="2.9.2896" />
-    <PackageReference Include="uplink.NET.Mac" Version="2.9.2896" />
-    <PackageReference Include="uplink.NET.Win" Version="2.9.2858" />	
+    <PackageReference Include="uplink.NET" Version="2.10.3175" />
+    <PackageReference Include="uplink.NET.Linux" Version="2.10.3175" />
+    <PackageReference Include="uplink.NET.Mac" Version="2.10.3175" />
+    <PackageReference Include="uplink.NET.Win" Version="2.10.3175" />	
   </ItemGroup>
   
   <ItemGroup>
