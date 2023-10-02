@@ -20,7 +20,7 @@ if (!Directory.Exists(appData))
     Directory.CreateDirectory(appData);
 }
 
-string configLocation = Path.Combine(appData, @"\quickshare.config");
+string configLocation = Path.Combine(appData, "quickshare.config");
 
 QuickshareConfig? quickshareConfig = null;
 
