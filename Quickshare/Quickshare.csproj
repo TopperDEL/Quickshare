@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<PackAsTool>true</PackAsTool>
@@ -12,11 +12,13 @@
     <Title>Quickshare</Title>
     <Authors>TopperDEL</Authors>
     <Company>TopperDEL</Company>
-	<Version>1.1.1</Version>
-	<PackageReleaseNotes>Release v1.1.0
-Uses latest uplink-c (v1.8.0) with refactored upload code path for faster and more resilient uploads</PackageReleaseNotes>
+	<Version>1.2.0</Version>
+	<PackageReleaseNotes>Release v1.2.0
+- Uses latest uplink-c (v1.8.1).
+- Switch to .Net 8.0
+- Support basic uploading of folders (using 'sharefolder')</PackageReleaseNotes>
 	<Description>This package lets you share files quickly by leveraging Storj DCS.</Description>
-	<Copyright>2023 TopperDEL</Copyright>
+	<Copyright>2024 TopperDEL</Copyright>
 	<PackageProjectUrl>https://github.com/TopperDEL/Quickshare</PackageProjectUrl>
 	<PackageIcon>StoreLogo.png</PackageIcon>
 	<RepositoryUrl>https://github.com/TopperDEL/Quickshare</RepositoryUrl>
@@ -37,10 +39,10 @@ Uses latest uplink-c (v1.8.0) with refactored upload code path for faster and mo
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="TextCopy" Version="6.2.1" />
     <PackageReference Include="TimeSpanParserUtil" Version="1.2.0" />
-    <PackageReference Include="uplink.NET" Version="2.10.3175" />
-    <PackageReference Include="uplink.NET.Linux" Version="2.10.3175" />
-    <PackageReference Include="uplink.NET.Mac" Version="2.10.3175" />
-    <PackageReference Include="uplink.NET.Win" Version="2.10.3175" />	
+    <PackageReference Include="uplink.NET" Version="2.12.3363" />
+    <PackageReference Include="uplink.NET.Linux" Version="2.12.3365" />
+    <PackageReference Include="uplink.NET.Mac" Version="2.12.3365" />
+    <PackageReference Include="uplink.NET.Win" Version="2.12.3363" />	
   </ItemGroup>
   
   <ItemGroup>
