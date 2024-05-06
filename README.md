@@ -36,3 +36,9 @@ quickshare -f myAwesomeFile.txt -d "1 week"
 ``
 
 This will make your file available for 1 week and delete it automatically afterwards, which will also render your share-URL obsolet. You may provide different phrases like "3 days", "1 week, 2 days" etc. to the "-d"-Parameter.
+
+You may also upload the content of a directory:
+
+``
+quickshare sharefolder -r "c:\myFolder" -d "2 weeks"
+``
