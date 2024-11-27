@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Quickshare": {
+      "commandName": "Project",
+      "commandLineArgs": "sharefolder -s -u -r \"f:\\test\" -d \"5 minutes\""
+    }
+  }
+}

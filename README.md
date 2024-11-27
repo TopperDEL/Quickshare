@@ -42,3 +42,17 @@ You may also upload the content of a directory:
 ``
 quickshare sharefolder -r "c:\myFolder" -d "2 weeks"
 ``
+
+This will upload all files in the folder "c:\myFolder" and create an index.html file that lists all files. The index.html file will be uploaded, too. The share-URL will point to the index.html file.
+
+If you need the subfolders, too, user the "sub"-parameter:
+
+``
+quickshare sharefolder -s -r "c:\myFolder" -d "2 weeks"
+``
+
+I you only want to upload the files only without generating an index.html file, use the "UploadOnly"-parameter:
+
+``
+quickshare sharefolder -u -s -r "c:\myFolder" -d "2 weeks"
+``

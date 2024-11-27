@@ -12,11 +12,10 @@
     <Title>Quickshare</Title>
     <Authors>TopperDEL</Authors>
     <Company>TopperDEL</Company>
-	<Version>1.2.0</Version>
-	<PackageReleaseNotes>Release v1.2.0
-- Uses latest uplink-c (v1.8.1).
-- Switch to .Net 8.0
-- Support basic uploading of folders (using 'sharefolder')</PackageReleaseNotes>
+	<Version>1.3.0</Version>
+	<PackageReleaseNotes>Release v1.3.0
+- Support uploading of subfolders (using 'sharefolder -s')
+- Support uploading of folder-content without explicit sharing (using 'sharefolder -u')</PackageReleaseNotes>
 	<Description>This package lets you share files quickly by leveraging Storj DCS.</Description>
 	<Copyright>2024 TopperDEL</Copyright>
 	<PackageProjectUrl>https://github.com/TopperDEL/Quickshare</PackageProjectUrl>
@@ -39,10 +38,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="TextCopy" Version="6.2.1" />
     <PackageReference Include="TimeSpanParserUtil" Version="1.2.0" />
-    <PackageReference Include="uplink.NET" Version="2.12.3363" />
-    <PackageReference Include="uplink.NET.Linux" Version="2.12.3365" />
-    <PackageReference Include="uplink.NET.Mac" Version="2.12.3365" />
-    <PackageReference Include="uplink.NET.Win" Version="2.12.3363" />	
+    <PackageReference Include="uplink.NET" Version="2.13.3484" />
+    <PackageReference Include="uplink.NET.Linux" Version="2.13.3484" />
+    <PackageReference Include="uplink.NET.Mac" Version="2.13.3484" />
+    <PackageReference Include="uplink.NET.Win" Version="2.13.3484" />	
   </ItemGroup>
   
   <ItemGroup>

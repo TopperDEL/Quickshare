@@ -144,7 +144,14 @@ Parser.Default.ParseArguments<CommandLineConfigOptions, CommandLineShareOptions,
                 }
             }
 
-            Console.WriteLine("Sharing the content of the folder '" + o.Path + "'.");
+            if (o.Sub)
+            {
+                Console.WriteLine("Sharing the content of the folder '" + o.Path + "' and all its subfolders.");
+            }
+            else
+            {
+                Console.WriteLine("Sharing the content of the folder '" + o.Path + "'.");
+            }
 
             Access access = new Access(quickshareConfig.AccessGrant);
             IBucketService bucketService = new BucketService(access);
@@ -161,11 +168,26 @@ Parser.Default.ParseArguments<CommandLineConfigOptions, CommandLineShareOptions,
             string htmlFileUrl;
 
             Dictionary<string, string> finalUrls = new Dictionary<string, string>();
-            var files = Directory.GetFiles(o.Path);
+            string[]? files;
+
+            if (o.Sub)
+            {
+                files = Directory.GetFiles(o.Path, "*.*", SearchOption.AllDirectories);
+            }
+            else
+            {
+                files = Directory.GetFiles(o.Path);
+            }
             foreach (var file in files)
             {
+                var targetFileName = file.Replace(o.Path + Path.DirectorySeparatorChar, "").Replace(Path.PathSeparator.ToString(), @"\");
 
-                var uploadOperationFolder = objectServiceFolder.UploadObjectAsync(bucket, file, uploadOptionsFolder, File.OpenRead(file), false).Result;
+                if(o.UploadOnly)
+                {
+                    Console.WriteLine("Uploading file '" + targetFileName + "' ...");
+                }
+
+                var uploadOperationFolder = objectServiceFolder.UploadObjectAsync(bucket, targetFileName, uploadOptionsFolder, File.OpenRead(file), false).Result;
                 uploadOperationFolder.UploadOperationProgressChanged += (uploadOperation) =>
                 {
                     if (uploadOperation.PercentageCompleted < 100)
@@ -190,51 +212,58 @@ Parser.Default.ParseArguments<CommandLineConfigOptions, CommandLineShareOptions,
                     return;
                 }
 
-                Console.WriteLine("Preparing file '" + file + "' for sharing...");
-                var urlFolder = access.CreateShareURL(quickshareConfig.BucketName, file, true, true).Replace("gateway", "link");
-                finalUrls.Add(Path.GetFileName(file), urlFolder);
-            }
-
-            using (var mstream = new MemoryStream())
-            {
-                SimpleHtmlGenerator.GenerateHtmlFile(finalUrls, mstream);
-                mstream.Seek(0, SeekOrigin.Begin);
-                var uploadOperationHtml = objectServiceFolder.UploadObjectAsync(bucket, "index.html", uploadOptionsFolder, mstream, false).Result;
-                uploadOperationHtml.UploadOperationProgressChanged += (uploadOperation) =>
+                if (!o.UploadOnly)
                 {
-                    if (uploadOperation.PercentageCompleted < 100)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write("\rStatus: {0}%   ", uploadOperation.PercentageCompleted);
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write("\rDone!                    \n");
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                    }
-                };
-                uploadOperationHtml.StartUploadAsync().Wait();
-                htmlFileUrl = access.CreateShareURL(quickshareConfig.BucketName, "index.html", true, true).Replace("gateway", "link");
+                    Console.WriteLine("Preparing file '" + targetFileName + "' for sharing...");
+                    var urlFolder = access.CreateShareURL(quickshareConfig.BucketName, file, true, true).Replace("gateway", "link");
+                    finalUrls.Add(Path.GetFileName(file), urlFolder);
+                }
             }
 
-            Console.WriteLine("Your URL is:");
-            Console.WriteLine(htmlFileUrl);
-            try
+            if (o.UploadOnly)
             {
-                TextCopy.ClipboardService.SetText(htmlFileUrl);
-                Console.WriteLine("It has been copied to the clipboard.");
-            }
-            catch
-            {
-                //Might fail on e.g. Linux
-            }
+                using (var mstream = new MemoryStream())
+                {
+                    SimpleHtmlGenerator.GenerateHtmlFile(finalUrls, mstream);
+                    mstream.Seek(0, SeekOrigin.Begin);
+                    var uploadOperationHtml = objectServiceFolder.UploadObjectAsync(bucket, "index.html", uploadOptionsFolder, mstream, false).Result;
+                    uploadOperationHtml.UploadOperationProgressChanged += (uploadOperation) =>
+                    {
+                        if (uploadOperation.PercentageCompleted < 100)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write("\rStatus: {0}%   ", uploadOperation.PercentageCompleted);
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write("\rDone!                    \n");
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                        }
+                    };
+                    uploadOperationHtml.StartUploadAsync().Wait();
+                    htmlFileUrl = access.CreateShareURL(quickshareConfig.BucketName, "index.html", true, true).Replace("gateway", "link");
+                }
 
-            if (shareDuration != TimeSpan.MinValue)
-            {
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("Your shared file will expire on {0}. The file will be automatically deleted afterwards.", uploadOptionsFolder.Expires.ToString());
-                Console.ForegroundColor = ConsoleColor.Gray;
+
+                Console.WriteLine("Your URL is:");
+                Console.WriteLine(htmlFileUrl);
+                try
+                {
+                    TextCopy.ClipboardService.SetText(htmlFileUrl);
+                    Console.WriteLine("It has been copied to the clipboard.");
+                }
+                catch
+                {
+                    //Might fail on e.g. Linux
+                }
+
+                if (shareDuration != TimeSpan.MinValue)
+                {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine("Your shared file will expire on {0}. The file will be automatically deleted afterwards.", uploadOptionsFolder.Expires.ToString());
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                }
             }
         }
         )
