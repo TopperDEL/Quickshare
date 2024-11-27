@@ -220,7 +220,7 @@ Parser.Default.ParseArguments<CommandLineConfigOptions, CommandLineShareOptions,
                 }
             }
 
-            if (o.UploadOnly)
+            if (!o.UploadOnly)
             {
                 using (var mstream = new MemoryStream())
                 {

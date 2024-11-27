@@ -12,10 +12,12 @@
     <Title>Quickshare</Title>
     <Authors>TopperDEL</Authors>
     <Company>TopperDEL</Company>
-	<Version>1.3.0</Version>
+	<Version>1.3.1</Version>
 	<PackageReleaseNotes>Release v1.3.0
 - Support uploading of subfolders (using 'sharefolder -s')
-- Support uploading of folder-content without explicit sharing (using 'sharefolder -u')</PackageReleaseNotes>
+- Support uploading of folder-content without explicit sharing (using 'sharefolder -u')
+Hotfix v1.3.1
+- Do not create index-html if without explicit sharing</PackageReleaseNotes>
 	<Description>This package lets you share files quickly by leveraging Storj DCS.</Description>
 	<Copyright>2024 TopperDEL</Copyright>
 	<PackageProjectUrl>https://github.com/TopperDEL/Quickshare</PackageProjectUrl>
