@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<PackAsTool>true</PackAsTool>
@@ -12,14 +12,11 @@
     <Title>Quickshare</Title>
     <Authors>TopperDEL</Authors>
     <Company>TopperDEL</Company>
-	<Version>1.3.1</Version>
-	<PackageReleaseNotes>Release v1.3.0
-- Support uploading of subfolders (using 'sharefolder -s')
-- Support uploading of folder-content without explicit sharing (using 'sharefolder -u')
-Hotfix v1.3.1
-- Do not create index-html if without explicit sharing</PackageReleaseNotes>
+	<Version>1.3.2</Version>
+	<PackageReleaseNotes>Release v1.3.2
+- Support net9.0 explicitly</PackageReleaseNotes>
 	<Description>This package lets you share files quickly by leveraging Storj DCS.</Description>
-	<Copyright>2024 TopperDEL</Copyright>
+	<Copyright>2024-2025 TopperDEL</Copyright>
 	<PackageProjectUrl>https://github.com/TopperDEL/Quickshare</PackageProjectUrl>
 	<PackageIcon>StoreLogo.png</PackageIcon>
 	<RepositoryUrl>https://github.com/TopperDEL/Quickshare</RepositoryUrl>
@@ -50,7 +47,7 @@ Hotfix v1.3.1
     <None Update="libstorj_uplink.dylib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="StoreLogo.png">
+    <None Include="StoreLogo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
